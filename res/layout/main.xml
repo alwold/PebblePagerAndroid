@@ -38,19 +38,12 @@
 
     <Button
         android:id="@+id/ringtone_button"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_below="@+id/settingsLabel"
+        android:textColor="#ffffff"
         android:text="Choose Ringer" />
-    
-    <TextView
-    	android:id="@+id/ringtone_label"
-    	android:layout_alignTop="@+id/ringtone_button"
-    	android:layout_toRightOf="@+id/ringtone_button"
-    	android:textAppearance="?android:attr/textAppearanceMediumInverse"
-    	android:layout_height="wrap_content"
-    	android:layout_width="match_parent" />
 
     <TextView
         android:id="@+id/installLabel"
@@ -62,14 +55,16 @@
         android:textColor="#ffffff"
         android:background="@drawable/underline_background"
         android:textAppearance="?android:attr/textAppearanceMedium"
+        android:paddingTop="30dp"
         android:paddingLeft="5dp" />
         
 	<Button
         android:id="@+id/install_button"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_below="@+id/installLabel"
+        android:textColor="#ffffff"
         android:text="Install App" />
         
 

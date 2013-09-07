@@ -41,7 +41,7 @@ public class MainActivity extends Activity {
 		receiver = new PagerDataReceiver(UUID.fromString("389d91c5-f84c-4fc1-a1a0-baa8ea1b436f"), this, ringtone);
 		PebbleKit.registerReceivedDataHandler(this, receiver);
 		if (ringtone != null) {
-			((TextView) findViewById(R.id.ringtone_label)).setText(ringtone.getTitle(this));
+			((TextView) findViewById(R.id.ringtone_button)).setText("Ringtone: " + ringtone.getTitle(this));
 		}
 		findViewById(R.id.ringtone_button).setOnClickListener(new OnClickListener() {
 			
@@ -67,7 +67,7 @@ public class MainActivity extends Activity {
 		e.commit();
 		Ringtone ringtone = RingtoneManager.getRingtone(this, uri);
 		receiver.setRingtone(ringtone);
-		((TextView) findViewById(R.id.ringtone_label)).setText(ringtone.getTitle(this));
+		((TextView) findViewById(R.id.ringtone_button)).setText("Ringtone: "+ringtone.getTitle(this));
 	}
 
 	@Override
