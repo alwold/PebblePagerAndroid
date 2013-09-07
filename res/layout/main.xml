@@ -43,5 +43,13 @@
         android:layout_alignParentLeft="true"
         android:layout_below="@+id/settingsLabel"
         android:text="Choose Ringer" />
+    
+    <TextView
+    	android:id="@+id/ringtone_label"
+    	android:layout_alignTop="@+id/ringtone_button"
+    	android:layout_toRightOf="@+id/ringtone_button"
+    	android:textAppearance="?android:attr/textAppearanceMediumInverse"
+    	android:layout_height="wrap_content"
+    	android:layout_width="match_parent" />
 
 </RelativeLayout>
