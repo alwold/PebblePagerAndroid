@@ -5,7 +5,6 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
-import java.util.UUID;
 
 import android.app.Activity;
 import android.content.ActivityNotFoundException;
@@ -24,6 +23,7 @@ import android.widget.TextView;
 public class MainActivity extends Activity {
 	private static final String PEBBLE_LAUNCH_COMPONENT = "com.getpebble.android";
 	private static final String PEBBLE_LAUNCH_ACTIVITY = "com.getpebble.android.ui.UpdateActivity";
+	private Uri ringtoneUri;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -31,16 +31,15 @@ public class MainActivity extends Activity {
 		setContentView(R.layout.main);
 		String ringtoneString = getSharedPreferences("PebblePager",  MODE_PRIVATE).getString("ringtone", null);
 		Ringtone ringtone;
-		Uri uri;
 		if (ringtoneString != null) {
-			uri = Uri.parse(ringtoneString);
-			ringtone = RingtoneManager.getRingtone(this, uri);
+			ringtoneUri = Uri.parse(ringtoneString);
+			ringtone = RingtoneManager.getRingtone(this, ringtoneUri);
 		} else {
-			uri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_RINGTONE);
-			ringtone = RingtoneManager.getRingtone(this, uri);
+			ringtoneUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_RINGTONE);
+			ringtone = RingtoneManager.getRingtone(this, ringtoneUri);
 		}
 		Intent intent = new Intent(this, NotificationService.class);
-		intent.putExtra("ringtone", uri);
+		intent.putExtra("ringtone", ringtoneUri);
 		startService(intent);
 		((TextView) findViewById(R.id.ringtone_button)).setText("Change Ringtone: " + ringtone.getTitle(this));
 		findViewById(R.id.ringtone_button).setOnClickListener(new OnClickListener() {
@@ -48,6 +47,7 @@ public class MainActivity extends Activity {
 			@Override
 			public void onClick(View v) {
 				Intent intent = new Intent(RingtoneManager.ACTION_RINGTONE_PICKER);
+				intent.putExtra(RingtoneManager.EXTRA_RINGTONE_EXISTING_URI, ringtoneUri);
 				startActivityForResult(intent, 0);
 			}
 		});
@@ -62,13 +62,13 @@ public class MainActivity extends Activity {
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 		if (data != null) {
-			Uri uri = (Uri) data.getExtras().get(RingtoneManager.EXTRA_RINGTONE_PICKED_URI);
+			ringtoneUri = (Uri) data.getExtras().get(RingtoneManager.EXTRA_RINGTONE_PICKED_URI);
 			Editor e = getSharedPreferences("PebblePager", MODE_PRIVATE).edit();
-			e.putString("ringtone", uri.toString());
+			e.putString("ringtone", ringtoneUri.toString());
 			e.commit();
-			Ringtone ringtone = RingtoneManager.getRingtone(this, uri);
+			Ringtone ringtone = RingtoneManager.getRingtone(this, ringtoneUri);
 			Intent intent = new Intent(this, NotificationService.class);
-			intent.putExtra("ringtone", uri);
+			intent.putExtra("ringtone", ringtoneUri);
 			startService(intent);
 			((TextView) findViewById(R.id.ringtone_button)).setText("Change Ringtone: "+ringtone.getTitle(this));
 		}
