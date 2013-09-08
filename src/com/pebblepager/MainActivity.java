@@ -40,9 +40,11 @@ public class MainActivity extends Activity {
 		}
 		receiver = new PagerDataReceiver(UUID.fromString("389d91c5-f84c-4fc1-a1a0-baa8ea1b436f"), this, ringtone);
 		PebbleKit.registerReceivedDataHandler(this, receiver);
-		if (ringtone != null) {
-			((TextView) findViewById(R.id.ringtone_button)).setText("Ringtone: " + ringtone.getTitle(this));
+		if (ringtone == null) {
+			RingtoneManager rm = new RingtoneManager(this);
+			ringtone = RingtoneManager.getRingtone(this, rm.getDefaultUri(RingtoneManager.TYPE_RINGTONE));
 		}
+		((TextView) findViewById(R.id.ringtone_button)).setText("Change Ringtone: " + ringtone.getTitle(this));
 		findViewById(R.id.ringtone_button).setOnClickListener(new OnClickListener() {
 			
 			@Override
@@ -61,13 +63,15 @@ public class MainActivity extends Activity {
 	
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-		Uri uri = (Uri) data.getExtras().get(RingtoneManager.EXTRA_RINGTONE_PICKED_URI);
-		Editor e = getSharedPreferences("PebblePager", MODE_PRIVATE).edit();
-		e.putString("ringtone", uri.toString());
-		e.commit();
-		Ringtone ringtone = RingtoneManager.getRingtone(this, uri);
-		receiver.setRingtone(ringtone);
-		((TextView) findViewById(R.id.ringtone_button)).setText("Ringtone: "+ringtone.getTitle(this));
+		if (data != null) {
+			Uri uri = (Uri) data.getExtras().get(RingtoneManager.EXTRA_RINGTONE_PICKED_URI);
+			Editor e = getSharedPreferences("PebblePager", MODE_PRIVATE).edit();
+			e.putString("ringtone", uri.toString());
+			e.commit();
+			Ringtone ringtone = RingtoneManager.getRingtone(this, uri);
+			receiver.setRingtone(ringtone);
+			((TextView) findViewById(R.id.ringtone_button)).setText("Change Ringtone: "+ringtone.getTitle(this));
+		}
 	}
 
 	@Override
