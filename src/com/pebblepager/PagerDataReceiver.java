@@ -2,10 +2,8 @@ package com.pebblepager;
 
 import java.util.UUID;
 
-import android.app.Activity;
 import android.content.Context;
 import android.media.Ringtone;
-import android.media.RingtoneManager;
 import android.util.Log;
 
 import com.getpebble.android.kit.PebbleKit.PebbleDataReceiver;
