@@ -72,5 +72,13 @@
         android:text="Install on Pebble"
         android:layout_marginTop="10dp" />
         
-
+	<Button
+        android:id="@+id/about_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/install_button"
+        android:text="About"
+        android:layout_marginTop="10dp" />
+	
 </RelativeLayout>

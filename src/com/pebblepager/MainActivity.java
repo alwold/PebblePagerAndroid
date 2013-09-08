@@ -57,6 +57,13 @@ public class MainActivity extends Activity {
 				installApp();
 			}
 		});
+		final Activity activity = this;
+		findViewById(R.id.about_button).setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				startActivity(new Intent(activity, AboutActivity.class));
+			}
+		});
 	}
 	
 	@Override

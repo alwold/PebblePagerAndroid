@@ -4,5 +4,14 @@
     <string name="app_name">Pebble Pager</string>
     <string name="action_settings">Settings</string>
     <string name="hello_world">Hello world!</string>
+    <string name="about_text">
+        The Pebble Pager is an application for the Pebble Smartwatch. The application on the watch allows for the user 
+        to page the phone. This is useful for when the phone is lost or stolen. \n
+\n
+		To get started, after the Pebble Pager application is installed, click the Install on Pebble button. This 
+		will send the watch application to the Pebble watch. Once that is complete a menu item is added to the 
+		Pebble watch. Use the watch to navigate to the "Pebble Pager" option on the watch. Clicking this button 
+		will then ring the phone with the chosen ringtone.
+	</string>
 
 </resources>

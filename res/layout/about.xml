@@ -1,0 +1,11 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent">
+    <TextView
+        android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        android:text="@string/about_text"
+        android:textAppearance="?android:attr/textAppearanceMediumInverse"
+        android:padding="10dp"
+        android:background="#ff000000"/>
+</LinearLayout>
