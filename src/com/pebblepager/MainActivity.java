@@ -67,7 +67,9 @@ public class MainActivity extends Activity {
 			e.putString("ringtone", uri.toString());
 			e.commit();
 			Ringtone ringtone = RingtoneManager.getRingtone(this, uri);
-//			receiver.setRingtone(ringtone);
+			Intent intent = new Intent(this, NotificationService.class);
+			intent.putExtra("ringtone", uri);
+			startService(intent);
 			((TextView) findViewById(R.id.ringtone_button)).setText("Change Ringtone: "+ringtone.getTitle(this));
 		}
 	}
