@@ -12,12 +12,10 @@ import com.getpebble.android.kit.PebbleKit.PebbleDataReceiver;
 import com.getpebble.android.kit.util.PebbleDictionary;
 
 public class PagerDataReceiver extends PebbleDataReceiver {
-	private Activity activity;
 	private Ringtone ringtone;
 
-	protected PagerDataReceiver(UUID subscribedUuid, Activity activity, Ringtone ringtone) {
+	protected PagerDataReceiver(UUID subscribedUuid, Ringtone ringtone) {
 		super(subscribedUuid);
-		this.activity = activity;
 		this.ringtone = ringtone;
 	}
 
